@@ -56,6 +56,13 @@ jobs:
             --timeout 15 \
             --retries 1
 
+      - name: Verify working-only playlist
+        run: |
+          if grep -Fq "example.invalid" arab-countries.m3u; then
+            echo "Placeholder host found in the public playlist"
+            exit 1
+          fi
+
       - name: Commit test report
         run: |
           git config user.name "github-actions[bot]"
