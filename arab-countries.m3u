@@ -742,7 +742,7 @@ https://example.invalid/iptv-no-stream/RoyaNews.jo
 #EXTINF:-1 tvg-id="RoyaTV.jo" tvg-name="Roya TV" tvg-logo="https://en.roya.tv/images/logo.png" group-title="Jordan" availability="available",Roya TV (Roya Page)
 #EXTVLCOPT:http-referrer=https://roya.tv/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0
-https://live.kwikmotion.com/royatvlive/royatv.smil/playlist.m3u8?hdnts=exp=1787935871~acl=/royatvlive/royatv.smil/*~hmac=3ea2980eb0043ea0207f899ef06577f669baaadfa8f81685a59f5bcdbc546555
+https://live.kwikmotion.com/royatvlive/royatv.smil/playlist.m3u8?hdnts=exp=1787937982~acl=/royatvlive/royatv.smil/*~hmac=089dbdbdbd24ea38b364bd947b98e1f5d1d92bd8317becd9e92e818b67abf55f
 #EXTINF:-1 tvg-id="SportTV.jo" tvg-name="Sport TV" group-title="Jordan" availability="unavailable",Sport TV
 https://example.invalid/iptv-no-stream/SportTV.jo
 #EXTINF:-1 tvg-id="TalaKidsClub.jo" tvg-name="Tala Kids Club" group-title="Jordan" availability="unavailable",Tala Kids Club
