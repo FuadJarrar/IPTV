@@ -1,0 +1,64 @@
+name: Test Arab IPTV channels
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - test_channels.py
+      - .github/workflows/test-channels.yml
+  schedule:
+    - cron: "20 2 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: iptv-repository-writes
+  cancel-in-progress: false
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Ensure ffprobe is installed
+        run: |
+          if ! command -v ffprobe >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y ffmpeg
+          fi
+
+      - name: Build latest playlists
+        run: python build_playlist.py
+
+      - name: Test Arab channels
+        run: |
+          python test_channels.py \
+            --playlist arab-countries.m3u \
+            --csv channel-status.csv \
+            --markdown channel-status.md \
+            --workers 8 \
+            --timeout 15 \
+            --retries 1
+
+      - name: Commit test report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.country.m3u arab-countries.m3u channel-status.csv channel-status.md
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update automated channel status report"
+            git pull --rebase
+            git push
+          fi
