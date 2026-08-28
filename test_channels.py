@@ -161,7 +161,13 @@ def probe_entry(entry, timeout, retries):
 
 
 def write_working_playlist(path, rows):
-    working = [row for row in rows if row["test_status"] == "Working"]
+    working = [
+        row
+        for row in rows
+        if row["test_status"] == "Working"
+        and row["url"]
+        and "example.invalid" not in row["url"].casefold()
+    ]
     output = ["#EXTM3U"]
     for row in working:
         output.extend(row["lines"])
