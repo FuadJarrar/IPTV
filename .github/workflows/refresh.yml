@@ -19,6 +19,9 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Update checkout
+        run: git pull --ff-only
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
