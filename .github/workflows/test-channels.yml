@@ -6,6 +6,7 @@ on:
     branches:
       - main
     paths:
+      - build_playlist.py
       - test_channels.py
       - .github/workflows/test-channels.yml
   schedule:
@@ -37,15 +38,16 @@ jobs:
             sudo apt-get install -y ffmpeg
           fi
 
-      - name: Build latest playlists
-        run: python build_playlist.py
+      - name: Build latest candidate catalog
+        run: python build_playlist.py --arab-output /tmp/arab-countries-candidates.m3u
 
       - name: Test Arab channels
         run: |
           python test_channels.py \
-            --playlist arab-countries.m3u \
+            --playlist /tmp/arab-countries-candidates.m3u \
             --csv channel-status.csv \
             --markdown channel-status.md \
+            --working-playlist arab-countries.m3u \
             --workers 8 \
             --timeout 15 \
             --retries 1
@@ -58,7 +60,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "Update automated channel status report"
+            git commit -m "Update verified working Arab channels"
             git pull --rebase
             git push
           fi

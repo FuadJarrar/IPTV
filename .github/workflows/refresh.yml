@@ -24,8 +24,11 @@ jobs:
         with:
           python-version: "3.x"
 
-      - name: Build playlists
-        run: python build_playlist.py
+      - name: Refresh source playlist and verified Roya URL
+        run: |
+          python build_playlist.py \
+            --arab-output /tmp/arab-countries-candidates.m3u \
+            --refresh-working-playlist arab-countries.m3u
 
       - name: Commit updated playlists
         run: |

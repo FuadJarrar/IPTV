@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import argparse
 import csv
 import io
 import json
@@ -215,7 +216,34 @@ def build_arab_playlist(header, source_entries, roya_entry, channels_text, block
     return "\n".join(out) + "\n", counts
 
 
+def replace_channel_entry(path, replacement):
+    if not path.exists():
+        raise FileNotFoundError(f"Working playlist does not exist: {path}")
+    header, entries = parse_entries(path.read_text(encoding="utf-8", errors="replace"))
+    replacement_id = channel_id(replacement)
+    replaced = False
+    output = [header]
+    for entry in entries:
+        if channel_id(entry) == replacement_id:
+            output.extend(replacement)
+            replaced = True
+        else:
+            output.extend(entry)
+    if replaced:
+        path.write_text("\n".join(output) + "\n", encoding="utf-8")
+    return replaced
+
+
 def main():
+    parser = argparse.ArgumentParser(description="Build IPTV source and Arab candidate playlists")
+    parser.add_argument("--arab-output", type=Path, default=ARAB_OUTPUT)
+    parser.add_argument(
+        "--refresh-working-playlist",
+        type=Path,
+        help="Refresh Roya only if it is already present in this working-only playlist",
+    )
+    args = parser.parse_args()
+
     source = fetch_text(SOURCE_M3U)
     header, entries = parse_entries(source)
 
@@ -246,11 +274,17 @@ def main():
         fetch_text(CHANNELS_CSV),
         fetch_text(BLOCKLIST_CSV),
     )
-    ARAB_OUTPUT.write_text(arab_text, encoding="utf-8")
+    args.arab_output.write_text(arab_text, encoding="utf-8")
+
+    if args.refresh_working_playlist:
+        if replace_channel_entry(args.refresh_working_playlist, roya_entry):
+            print(f"Refreshed Roya TV in {args.refresh_working_playlist}")
+        else:
+            print(f"Roya TV is not currently verified; left {args.refresh_working_playlist} unchanged")
 
     print(f"Wrote {OUTPUT} with {len(main_entries)} channels")
     print(
-        f"Wrote {ARAB_OUTPUT} with {sum(counts.values())} channels "
+        f"Wrote {args.arab_output} with {sum(counts.values())} channels "
         f"({counts['available']} available, {counts['unavailable']} unavailable, "
         f"{counts['blocked']} blocked)"
     )

@@ -9,22 +9,19 @@ Automated IPTV playlists for OTT Navigator.
 - [Latest Arab channel test summary](channel-status.md)
 - [Detailed Arab channel test results](channel-status.csv)
 
-The arab-countries.m3u playlist contains all active registered channels from
-the 22 Arab League countries:
+The public `arab-countries.m3u` playlist contains only channels that passed
+the latest automated stream test. OTT Navigator therefore receives working
+channels only.
 
-- Available channels use a stream from the current IPTV-org playlist.
-- Registered channels without a public stream remain listed without a visible
-  status suffix.
-- IPTV-org blocklisted channels are marked `[Blocked: reason]`.
-- Unavailable and blocked entries use `example.invalid` placeholder URLs so
-  they remain visible in IPTV applications but do not connect anywhere.
-- Roya TV uses the refreshed stream obtained directly from the Roya TV page
-  API.
+Every day at 02:20 UTC, the workflow rebuilds a private candidate catalog from
+all active registered channels in the 22 Arab League countries, including
+channels that previously failed or had no stream. It tests every real stream
+with ffprobe, adds channels that pass, and removes channels that fail. The
+candidate catalog is temporary and is not published in the repository.
 
-Both playlists are rebuilt automatically every 30 minutes, at minutes 7 and
-37 UTC.
+Roya TV uses the stream obtained directly from the Roya TV page API. Its
+short-lived signed URL is refreshed every 30 minutes, at minutes 7 and 37 UTC,
+without re-adding Roya if it did not pass the latest full test.
 
-All Arab playlist entries are tested automatically every day at 02:20 UTC.
-The report checks real streams with ffprobe and records working, failed,
-restricted, unavailable, and blocklisted channels. Tests run from a
-GitHub-hosted runner, so geo-restricted results may differ from Jordan.
+Tests run from a GitHub-hosted runner, so geo-restricted results may differ
+from Jordan. The scheduled workflows have no end date.

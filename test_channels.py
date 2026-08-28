@@ -32,13 +32,19 @@ def parse_playlist(path):
                 "referer": attrs.get("http-referrer", ""),
                 "user_agent": attrs.get("http-user-agent", DEFAULT_UA),
                 "url": "",
+                "lines": [line],
             }
         elif current and line.startswith("#EXTVLCOPT:http-referrer="):
+            current["lines"].append(line)
             current["referer"] = line.split("=", 1)[1].strip()
         elif current and line.startswith("#EXTVLCOPT:http-user-agent="):
+            current["lines"].append(line)
             current["user_agent"] = line.split("=", 1)[1].strip()
         elif current and line and not line.startswith("#"):
+            current["lines"].append(line)
             current["url"] = line.strip()
+        elif current and line:
+            current["lines"].append(line)
     if current:
         entries.append(current)
     return entries
@@ -154,6 +160,15 @@ def probe_entry(entry, timeout, retries):
     return result
 
 
+def write_working_playlist(path, rows):
+    working = [row for row in rows if row["test_status"] == "Working"]
+    output = ["#EXTM3U"]
+    for row in working:
+        output.extend(row["lines"])
+    Path(path).write_text("\n".join(output) + "\n", encoding="utf-8")
+    return len(working)
+
+
 def write_csv(path, rows, checked_at):
     fields = [
         "Checked At UTC",
@@ -254,6 +269,10 @@ def main():
     parser.add_argument("--playlist", default="arab-countries.m3u")
     parser.add_argument("--csv", default="channel-status.csv")
     parser.add_argument("--markdown", default="channel-status.md")
+    parser.add_argument(
+        "--working-playlist",
+        help="Write only streams that pass the current test to this M3U file",
+    )
     parser.add_argument("--workers", type=int, default=8)
     parser.add_argument("--timeout", type=int, default=15)
     parser.add_argument("--retries", type=int, default=1)
@@ -277,6 +296,9 @@ def main():
     checked_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
     write_csv(args.csv, results, checked_at)
     write_markdown(args.markdown, results, checked_at, Path(args.csv).name)
+    if args.working_playlist:
+        written = write_working_playlist(args.working_playlist, results)
+        print(f"Wrote {args.working_playlist} with {written} verified working channels")
     counts = Counter(row["test_status"] for row in results)
     print("Results:", dict(sorted(counts.items())))
 
