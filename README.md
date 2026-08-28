@@ -11,7 +11,8 @@ The arab-countries.m3u playlist contains all active registered channels from
 the 22 Arab League countries:
 
 - Available channels use a stream from the current IPTV-org playlist.
-- Registered channels without a public stream are marked `[Unavailable]`.
+- Registered channels without a public stream remain listed without a visible
+  status suffix.
 - IPTV-org blocklisted channels are marked `[Blocked: reason]`.
 - Unavailable and blocked entries use `example.invalid` placeholder URLs so
   they remain visible in IPTV applications but do not connect anywhere.

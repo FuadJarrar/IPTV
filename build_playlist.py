@@ -148,7 +148,7 @@ def set_display_name(extinf, name):
 
 def unavailable_entry(row, country, reason=None):
     status = "blocked" if reason else "unavailable"
-    suffix = f" [Blocked: {reason}]" if reason else " [Unavailable]"
+    suffix = f" [Blocked: {reason}]" if reason else ""
     extinf = (
         '#EXTINF:-1 '
         f'tvg-id="{xml_attr(row["id"])}" '
