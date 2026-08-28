@@ -11,6 +11,7 @@ SOURCE_M3U = "https://iptv-org.github.io/iptv/index.country.m3u"
 CHANNELS_CSV = "https://raw.githubusercontent.com/iptv-org/database/master/data/channels.csv"
 BLOCKLIST_CSV = "https://raw.githubusercontent.com/iptv-org/database/master/data/blocklist.csv"
 ROYA_API = "https://ticket.roya-tv.com/api/v5/fastchannel/1"
+ROYA_LOGO = "https://en.roya.tv/images/logo.png"
 OUTPUT = Path("index.country.m3u")
 ARAB_OUTPUT = Path("arab-countries.m3u")
 PLACEHOLDER_BASE = "https://example.invalid/iptv-no-stream"
@@ -225,7 +226,7 @@ def main():
         raise RuntimeError("Roya API did not return a secured_url")
 
     roya_entry = [
-        '#EXTINF:-1 tvg-id="RoyaTV.jo" tvg-name="Roya TV" group-title="Jordan" availability="available",Roya TV (Roya Page)',
+        f'#EXTINF:-1 tvg-id="RoyaTV.jo" tvg-name="Roya TV" tvg-logo="{ROYA_LOGO}" group-title="Jordan" availability="available",Roya TV (Roya Page)',
         '#EXTVLCOPT:http-referrer=https://roya.tv/',
         '#EXTVLCOPT:http-user-agent=Mozilla/5.0',
         roya_url,

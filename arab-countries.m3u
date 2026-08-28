@@ -739,7 +739,7 @@ https://example.invalid/iptv-no-stream/RoyaKitchen.jo
 https://example.invalid/iptv-no-stream/RoyaMusic.jo
 #EXTINF:-1 tvg-id="RoyaNews.jo" tvg-name="Roya News" group-title="Jordan" availability="unavailable",Roya News [Unavailable]
 https://example.invalid/iptv-no-stream/RoyaNews.jo
-#EXTINF:-1 tvg-id="RoyaTV.jo" tvg-name="Roya TV" group-title="Jordan" availability="available",Roya TV (Roya Page)
+#EXTINF:-1 tvg-id="RoyaTV.jo" tvg-name="Roya TV" tvg-logo="https://en.roya.tv/images/logo.png" group-title="Jordan" availability="available",Roya TV (Roya Page)
 #EXTVLCOPT:http-referrer=https://roya.tv/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0
 https://live.kwikmotion.com/royatvlive/royatv.smil/playlist.m3u8?hdnts=exp=1787931781~acl=/royatvlive/royatv.smil/*~hmac=08729899deaec0de3788adf9e7c5f19215afff688fa03ef65f4854e8d0b76f66
