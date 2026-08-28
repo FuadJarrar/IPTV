@@ -18,4 +18,5 @@ the 22 Arab League countries:
 - Roya TV uses the refreshed stream obtained directly from the Roya TV page
   API.
 
-Both playlists are rebuilt automatically every hour at minute 17 UTC.
+Both playlists are rebuilt automatically every 30 minutes, at minutes 7 and
+37 UTC.
