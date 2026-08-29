@@ -1,6 +1,6 @@
 # Arab Countries Channel Status
 
-Last automated test: **2026-08-28 16:51:08 UTC**
+Last automated test: **2026-08-29 09:12:27 UTC**
 
 > Tests run from a GitHub-hosted runner. Geo-restricted streams may work in Jordan even when they fail here.
 
@@ -21,15 +21,15 @@ Last automated test: **2026-08-28 16:51:08 UTC**
 
 | Country | Total | Tested | Working | Failed | No stream | Blocked |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Algeria | 43 | 6 | 5 | 1 | 37 | 0 |
+| Algeria | 43 | 6 | 4 | 2 | 37 | 0 |
 | Bahrain | 6 | 5 | 5 | 0 | 1 | 0 |
 | Comoros | 2 | 0 | 0 | 0 | 2 | 0 |
 | Djibouti | 8 | 0 | 0 | 0 | 8 | 0 |
-| Egypt | 116 | 18 | 15 | 3 | 98 | 0 |
-| Iraq | 138 | 56 | 51 | 5 | 82 | 0 |
+| Egypt | 116 | 18 | 16 | 2 | 98 | 0 |
+| Iraq | 138 | 56 | 52 | 4 | 82 | 0 |
 | Jordan | 62 | 19 | 15 | 4 | 43 | 0 |
 | Kuwait | 26 | 11 | 10 | 1 | 15 | 0 |
-| Lebanon | 48 | 30 | 22 | 8 | 18 | 0 |
+| Lebanon | 48 | 30 | 21 | 9 | 18 | 0 |
 | Libya | 26 | 4 | 4 | 0 | 22 | 0 |
 | Mauritania | 16 | 0 | 0 | 0 | 16 | 0 |
 | Morocco | 30 | 9 | 9 | 0 | 21 | 0 |
@@ -50,8 +50,8 @@ Last automated test: **2026-08-28 16:51:08 UTC**
 - **Working:** 268
 - **Not tested — blocklisted:** 36
 - **Restricted (403):** 29
-- **Not found (404):** 11
-- **Failed:** 10
+- **Failed:** 11
+- **Not found (404):** 10
 - **Invalid stream:** 6
 - **TLS failure:** 1
 - **Timeout:** 1
