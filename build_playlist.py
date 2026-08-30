@@ -2,7 +2,6 @@
 import argparse
 import csv
 import io
-import json
 import re
 import urllib.parse
 import urllib.request
@@ -11,7 +10,9 @@ from pathlib import Path
 SOURCE_M3U = "https://iptv-org.github.io/iptv/index.country.m3u"
 CHANNELS_CSV = "https://raw.githubusercontent.com/iptv-org/database/master/data/channels.csv"
 BLOCKLIST_CSV = "https://raw.githubusercontent.com/iptv-org/database/master/data/blocklist.csv"
-ROYA_API = "https://ticket.roya-tv.com/api/v5/fastchannel/1"
+# Resolve expiring Roya signatures when the player requests a manifest, not
+# when a scheduled GitHub job happens to run.
+ROYA_STREAM_URL = "https://roya-tv-on-demand.fuad-azzam-jarrar.chatgpt.site/roya.m3u8"
 ROYA_LOGO = "https://en.roya.tv/images/logo.png"
 OUTPUT = Path("index.country.m3u")
 ARAB_OUTPUT = Path("arab-countries.m3u")
@@ -55,23 +56,6 @@ def fetch_text(url, referer=None):
     req = urllib.request.Request(url, headers=headers)
     with urllib.request.urlopen(req, timeout=60) as response:
         return response.read().decode("utf-8", errors="replace")
-
-
-def find_secured_url(obj):
-    if isinstance(obj, dict):
-        value = obj.get("secured_url")
-        if isinstance(value, str) and value.startswith("http"):
-            return value
-        for child in obj.values():
-            found = find_secured_url(child)
-            if found:
-                return found
-    elif isinstance(obj, list):
-        for child in obj:
-            found = find_secured_url(child)
-            if found:
-                return found
-    return None
 
 
 def parse_entries(text):
@@ -248,16 +232,11 @@ def main():
     header, entries = parse_entries(source)
 
     entries = [entry for entry in entries if "Roya TV (Roya Page)" not in entry[0]]
-    roya_json = json.loads(fetch_text(ROYA_API, referer="https://roya.tv/"))
-    roya_url = find_secured_url(roya_json)
-    if not roya_url:
-        raise RuntimeError("Roya API did not return a secured_url")
-
     roya_entry = [
         f'#EXTINF:-1 tvg-id="RoyaTV.jo" tvg-name="Roya TV" tvg-logo="{ROYA_LOGO}" group-title="Jordan" availability="available",Roya TV (Roya Page)',
         '#EXTVLCOPT:http-referrer=https://roya.tv/',
         '#EXTVLCOPT:http-user-agent=Mozilla/5.0',
-        roya_url,
+        ROYA_STREAM_URL,
     ]
 
     main_entries = entries + [roya_entry]

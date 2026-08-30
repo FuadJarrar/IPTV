@@ -27,7 +27,10 @@ jobs:
         with:
           python-version: "3.x"
 
-      - name: Refresh source playlist and verified Roya URL
+      - name: Verify playlist safeguards
+        run: python -m unittest discover -s tests -p 'test_*.py'
+
+      - name: Refresh source playlist and preserve verified Roya endpoint
         run: |
           python build_playlist.py \
             --arab-output /tmp/arab-countries-candidates.m3u \

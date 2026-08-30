@@ -8,6 +8,7 @@ on:
     paths:
       - build_playlist.py
       - test_channels.py
+      - tests/**
       - .github/workflows/test-channels.yml
   schedule:
     - cron: "20 2 * * *"
@@ -34,6 +35,9 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.x"
+
+      - name: Verify playlist safeguards
+        run: python -m unittest discover -s tests -p 'test_*.py'
 
       - name: Ensure ffprobe is installed
         run: |
