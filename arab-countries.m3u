@@ -187,7 +187,7 @@ http://45.63.116.205/hls3/stream1.m3u8
 #EXTINF:-1 tvg-id="RoyaTV.jo" tvg-name="Roya TV" tvg-logo="https://en.roya.tv/images/logo.png" group-title="Jordan" availability="available",Roya TV (Roya Page)
 #EXTVLCOPT:http-referrer=https://roya.tv/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0
-https://roya-tv-on-demand.fuad-azzam-jarrar.chatgpt.site/roya.m3u8
+https://live.kwikmotion.com/royatvlive/royatv.smil/playlist.m3u8?hdnts=exp=1788093328~acl=/royatvlive/royatv.smil/*~hmac=a05085983b6c2c73a811cec054efa06728316ccbd0b705382066f26d58812af6
 #EXTINF:-1 tvg-id="KTV1.kw@SD" tvg-logo="https://i.imgur.com/kG0d8Ay.png" group-title="Kuwait" tvg-name="KTV 1" availability="available",KTV 1 (1080p)
 https://kwtktv1ta.cdn.mangomolo.com/ktv1/smil:ktv1.stream.smil/chunklist.m3u8
 #EXTINF:-1 tvg-id="KTV2.kw@SD" tvg-logo="https://i.imgur.com/hB57mNh.png" group-title="Kuwait" tvg-name="KTV 2" availability="available",KTV 2 (1080p)
@@ -314,6 +314,8 @@ https://pbc.furrera.ps/palestinelivehd/index.m3u8
 https://pbc.furrera.ps/palestinehd/index.m3u8
 #EXTINF:-1 tvg-id="PalestineToday.ps@SD" tvg-logo="https://i.imgur.com/BS8XXug.png" group-title="Palestine" tvg-name="Palestine Today" availability="available",Palestine Today (480p) [Geo-blocked]
 https://live.paltodaytv.com/paltv/live/playlist.m3u8
+#EXTINF:-1 tvg-id="RadioAlbaladTV.ps@SD" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/7/71/Nothing_whitespace_blank.png" group-title="Palestine" tvg-name="Radio Albalad TV" availability="available",Radio Albalad TV (720p)
+http://streaming.zaytonatube.com:8080/radioalbalad/radioalbalad/playlist.m3u8
 #EXTINF:-1 tvg-id="RajeenTV.ps@SD" tvg-logo="https://i.imgur.com/6Cx22ya.png" group-title="Palestine" tvg-name="Rajeen TV" availability="available",Rajeen TV (1080p) [Not 24/7]
 https://mn-nl.mncdn.com/palabroad/live/playlist.m3u8
 #EXTINF:-1 tvg-id="SerajTV.ps@SD" tvg-logo="https://i.imgur.com/1d25a9Q.png" http-referrer="https://www.alaqsanet.news/" group-title="Palestine" tvg-name="Seraj TV" availability="available",Seraj TV (1080i)
@@ -354,6 +356,8 @@ https://live.kwikmotion.com/qtv1live/qtv1.smil/playlist.m3u8
 https://live.kwikmotion.com/qtv2live/qtv2.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="QatarTVTheHolyQuran.qa@HD" tvg-logo="https://www.qmc.qa/img/LiveChannels/1ca67a44-9290-4b2a-8a16-d8c6e2260816.jpg" group-title="Qatar" tvg-name="Qatar TV The Holy Quran" availability="available",Qatar TV The Holy Quran (1080p)
 https://qatartv.akamaized.net/hls/live/20000612/qtvquran/master.m3u8
+#EXTINF:-1 tvg-id="QBC.qa@HD" tvg-logo="https://www.qbc.news/_next/static/media/logo.0~2x9wpd284~a.svg" group-title="Qatar" tvg-name="QBC" availability="available",QBC (1080p)
+https://googlecdn1.alkassdigital.net/livestream/qbc4/main.m3u8
 #EXTINF:-1 tvg-id="Aflam.sa@SD" tvg-logo="https://i.imgur.com/cTLj7Yt.png" group-title="Saudi Arabia" tvg-name="Aflam" availability="available",Aflam (1080p)
 https://shd-amg-fast.edgenextcdn.net/tx001/playlist.m3u8
 #EXTINF:-1 tvg-id="AlArabiyaEnglish.sa@SD" tvg-logo="https://shahid.mbc.net/mediaObject/7cfc0baf-1201-477f-b722-d3099fafe17f?height=230&width=512&croppingPoint=&version=1&type=png" group-title="Saudi Arabia" tvg-name="Al Arabiya English" availability="available",Al Arabiya English (1080p)
