@@ -1,6 +1,6 @@
 # Arab Countries Channel Status
 
-Last automated test: **2026-08-29 09:12:27 UTC**
+Last automated test: **2026-08-30 08:26:06 UTC**
 
 > Tests run from a GitHub-hosted runner. Geo-restricted streams may work in Jordan even when they fail here.
 
@@ -10,8 +10,8 @@ Last automated test: **2026-08-29 09:12:27 UTC**
 | --- | ---: |
 | Total playlist entries | 1085 |
 | Real streams tested | 327 |
-| Working | 268 |
-| Failed or restricted | 59 |
+| Working | 269 |
+| Failed or restricted | 58 |
 | No public stream | 722 |
 | Blocklisted | 36 |
 
@@ -21,22 +21,22 @@ Last automated test: **2026-08-29 09:12:27 UTC**
 
 | Country | Total | Tested | Working | Failed | No stream | Blocked |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Algeria | 43 | 6 | 4 | 2 | 37 | 0 |
+| Algeria | 43 | 6 | 5 | 1 | 37 | 0 |
 | Bahrain | 6 | 5 | 5 | 0 | 1 | 0 |
 | Comoros | 2 | 0 | 0 | 0 | 2 | 0 |
 | Djibouti | 8 | 0 | 0 | 0 | 8 | 0 |
 | Egypt | 116 | 18 | 16 | 2 | 98 | 0 |
-| Iraq | 138 | 56 | 52 | 4 | 82 | 0 |
-| Jordan | 62 | 19 | 15 | 4 | 43 | 0 |
-| Kuwait | 26 | 11 | 10 | 1 | 15 | 0 |
-| Lebanon | 48 | 30 | 21 | 9 | 18 | 0 |
+| Iraq | 138 | 56 | 50 | 6 | 82 | 0 |
+| Jordan | 62 | 19 | 16 | 3 | 43 | 0 |
+| Kuwait | 26 | 11 | 9 | 2 | 15 | 0 |
+| Lebanon | 48 | 30 | 25 | 5 | 18 | 0 |
 | Libya | 26 | 4 | 4 | 0 | 22 | 0 |
 | Mauritania | 16 | 0 | 0 | 0 | 16 | 0 |
 | Morocco | 30 | 9 | 9 | 0 | 21 | 0 |
 | Oman | 6 | 5 | 5 | 0 | 1 | 0 |
-| Palestine | 39 | 19 | 15 | 4 | 20 | 0 |
-| Qatar | 86 | 23 | 15 | 8 | 33 | 30 |
-| Saudi Arabia | 164 | 55 | 44 | 11 | 109 | 0 |
+| Palestine | 39 | 19 | 16 | 3 | 20 | 0 |
+| Qatar | 86 | 23 | 14 | 9 | 33 | 30 |
+| Saudi Arabia | 164 | 55 | 42 | 13 | 109 | 0 |
 | Somalia | 25 | 7 | 0 | 7 | 18 | 0 |
 | Sudan | 31 | 3 | 2 | 1 | 28 | 0 |
 | Syria | 30 | 11 | 10 | 1 | 19 | 0 |
@@ -47,12 +47,12 @@ Last automated test: **2026-08-29 09:12:27 UTC**
 ## Test results
 
 - **Not tested — no public stream:** 722
-- **Working:** 268
+- **Working:** 269
 - **Not tested — blocklisted:** 36
-- **Restricted (403):** 29
-- **Failed:** 11
-- **Not found (404):** 10
+- **Restricted (403):** 26
+- **Failed:** 15
+- **Not found (404):** 7
 - **Invalid stream:** 6
+- **Timeout:** 2
 - **TLS failure:** 1
-- **Timeout:** 1
 - **Unauthorized (401):** 1
