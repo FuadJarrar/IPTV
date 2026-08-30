@@ -1,0 +1,39 @@
+name: Verify Roya on-demand playback
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/verify_roya.py
+      - .github/workflows/test-roya.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: roya-playback-verification
+  cancel-in-progress: false
+
+jobs:
+  playback:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Ensure playback tools are installed
+        run: |
+          if ! command -v ffprobe >/dev/null 2>&1 || ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y ffmpeg
+          fi
+
+      - name: Verify real Roya audio and video
+        run: python scripts/verify_roya.py
