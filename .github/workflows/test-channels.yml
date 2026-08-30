@@ -8,6 +8,7 @@ on:
     paths:
       - build_playlist.py
       - test_channels.py
+      - roya.py
       - tests/**
       - .github/workflows/test-channels.yml
   schedule:
@@ -39,9 +40,9 @@ jobs:
       - name: Verify playlist safeguards
         run: python -m unittest discover -s tests -p 'test_*.py'
 
-      - name: Ensure ffprobe is installed
+      - name: Ensure playback tools are installed
         run: |
-          if ! command -v ffprobe >/dev/null 2>&1; then
+          if ! command -v ffprobe >/dev/null 2>&1 || ! command -v ffmpeg >/dev/null 2>&1; then
             sudo apt-get update
             sudo apt-get install -y ffmpeg
           fi
@@ -62,8 +63,8 @@ jobs:
 
       - name: Verify working-only playlist
         run: |
-          if grep -Fq "example.invalid" arab-countries.m3u; then
-            echo "Placeholder host found in the public playlist"
+          if grep -Eiq 'example\.invalid|roya-tv-on-demand\.' arab-countries.m3u; then
+            echo "Placeholder host or obsolete Roya source found in the public playlist"
             exit 1
           fi
 

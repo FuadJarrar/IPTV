@@ -1,4 +1,4 @@
-name: Verify Roya on-demand playback
+name: Verify direct Roya playback
 
 on:
   workflow_dispatch:
@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - scripts/verify_roya.py
+      - roya.py
       - .github/workflows/test-roya.yml
 
 permissions:
@@ -35,5 +36,5 @@ jobs:
             sudo apt-get install -y ffmpeg
           fi
 
-      - name: Verify real Roya audio and video
+      - name: Verify direct Roya audio and video
         run: python scripts/verify_roya.py

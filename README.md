@@ -4,43 +4,47 @@ Automated IPTV playlists for OTT Navigator.
 
 ## Playlists
 
-- [All countries](https://raw.githubusercontent.com/FuadJarrar/IPTV/main/index.country.m3u)
-- [Arab countries](https://raw.githubusercontent.com/FuadJarrar/IPTV/main/arab-countries.m3u)
-- [Latest Arab channel test summary](channel-status.md)
-- [Detailed Arab channel test results](channel-status.csv)
+- [Arab countries — arab-list](https://raw.githubusercontent.com/FuadJarrar/IPTV/main/arab-countries.m3u)
+- [Existing all-country list](https://raw.githubusercontent.com/FuadJarrar/IPTV/main/index.country.m3u)
+- [Latest full Arab channel test summary](channel-status.md)
+- [Detailed full-scan results](channel-status.csv)
 
-The public `arab-countries.m3u` playlist contains only channels that passed
-the latest automated stream test. This is a point-in-time check, not a
-guarantee that a broadcaster remains available between checks.
+Subscribe only to `arab-countries.m3u` for Arab channels, including Roya TV.
+There is no separate Roya playlist and no hosted resolver in its playback path.
+The existing all-country list remains available independently; it is not required.
 
-The daily workflow is scheduled for 02:20 UTC and rebuilds a temporary candidate catalog from
-all active registered channels in the 22 Arab League countries, including
-channels that previously failed or had no stream. It tests every real stream
-with ffprobe, adds channels that pass, and removes channels that fail. The
-candidate catalog is temporary and is not published in the repository.
+## Direct Roya renewal
 
-## Roya TV
+Roya's direct, signed HLS URL is obtained from its official public page API and
+written inside `arab-countries.m3u`, with the Roya referrer and user-agent hints.
+Observed initial links last approximately one hour; the broadcaster controls expiry.
 
-Roya uses a stable [on-demand HLS endpoint](https://roya-tv-on-demand.fuad-azzam-jarrar.chatgpt.site/roya.m3u8).
-It obtains current signed playlists from Roya's public API when requested.
-Variant playlist addresses remain stable as signatures rotate, and video
-segments are delivered directly from Roya's CDN. Playlist responses instruct
-players not to cache them; the resolver reuses its upstream catalog for at most
-five minutes, always within the token's lifetime. It returns an error rather
-than serving an expired link if Roya is unavailable or denies access.
+The `Refresh direct Roya in arab-list` workflow is scheduled every 15 minutes,
+at minutes 7, 22, 37 and 52 UTC. It obtains a fresh URL, probes the stream, decodes
+at least five seconds of audio/video, and requires at least 30 minutes of token
+validity remaining before publishing. Success adds or replaces Roya; failure
+removes Roya until a later test passes. Other Arab channel entries are preserved.
+The same verified Roya entry is mirrored into the existing all-country list.
 
-Both playlist-generation workflows preserve this endpoint instead of writing
-short-lived signatures into the repository. The source refresh remains scheduled
-at minutes 7 and 37 UTC and does not re-add Roya if the full stream test removed
-it. The daily stream test checks this endpoint like any other channel, removing
-it on failure and restoring it on a later successful test.
+Set the player to refresh arab-list every 10 minutes and disable persistent
+playlist caching. GitHub cannot force a player to reload its cached URL, and a
+playlist refresh may not restart a stream already playing. Reopen the channel
+if the app retains an old playback session.
 
-Keep the existing Arab playlist subscription in OTT Navigator. It will pick up
-the new Roya address on its next playlist refresh; a manual provider refresh is
-only needed if the app continues using its cached old address.
+## Full channel testing
 
-Tests run from a GitHub-hosted runner, so geo-restricted results may differ
-from Jordan. GitHub may delay or disable scheduled workflows; cron timing is
-not guaranteed. Roya token renewal no longer depends on those schedules.
-The schedules have no configured end date, but neither hosting nor upstream
-availability can be guaranteed indefinitely.
+The full workflow is scheduled daily at 02:20 UTC. It refreshes the source catalog
+and tests active registered channels from the 22 Arab League countries, including
+previously failed channels. Only passing channels are published in arab-list;
+`example.invalid` placeholders and blocklisted entries are never published there.
+Roya is resolved and decoded last so its key does not age during the full scan.
+The CSV and Markdown reports describe this full scan; subsequent Roya-only
+refreshes are recorded in their workflow logs.
+
+`Verify direct Roya playback` is also available as a read-only diagnostic job.
+Regression tests run before either publishing workflow.
+
+These are point-in-time tests from GitHub runners; results can differ by player,
+network or region. Schedules have no configured end date, but GitHub can delay,
+drop or disable scheduled jobs. Freshness and uninterrupted playback cannot be
+guaranteed indefinitely. No server setup is needed on the player's device.

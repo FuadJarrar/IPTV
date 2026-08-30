@@ -1,9 +1,17 @@
-name: Refresh IPTV playlists
+name: Refresh direct Roya in arab-list
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - roya.py
+      - build_playlist.py
+      - test_channels.py
+      - tests/**
+      - .github/workflows/refresh.yml
   schedule:
-    - cron: "7,37 * * * *"
+    - cron: "7,22,37,52 * * * *"
 
 permissions:
   contents: write
@@ -15,6 +23,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -30,11 +39,24 @@ jobs:
       - name: Verify playlist safeguards
         run: python -m unittest discover -s tests -p 'test_*.py'
 
-      - name: Refresh source playlist and preserve verified Roya endpoint
+      - name: Ensure playback tools are installed
         run: |
-          python build_playlist.py \
-            --arab-output /tmp/arab-countries-candidates.m3u \
+          if ! command -v ffprobe >/dev/null 2>&1 || ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y ffmpeg
+          fi
+
+      - name: Test and refresh direct Roya URL in existing playlists
+        run: |
+          python build_playlist.py --refresh-roya-only \
             --refresh-working-playlist arab-countries.m3u
+
+      - name: Verify no placeholder hosts or hosted Roya link
+        run: |
+          if grep -Eiq 'example\.invalid|roya-tv-on-demand\.' arab-countries.m3u; then
+            echo "Invalid or obsolete Roya source found in arab-list"
+            exit 1
+          fi
 
       - name: Commit updated playlists
         run: |
@@ -44,6 +66,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "Refresh IPTV playlists"
+            git commit -m "Refresh verified direct Roya stream"
             git push
           fi

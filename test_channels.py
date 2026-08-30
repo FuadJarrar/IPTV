@@ -286,10 +286,13 @@ def main():
 
     entries = parse_playlist(args.playlist)
     results = [None] * len(entries)
+    roya_indices = [i for i, entry in enumerate(entries)
+                    if entry["tvg_id"].split("@", 1)[0] == "RoyaTV.jo"]
     with ThreadPoolExecutor(max_workers=args.workers) as executor:
         futures = {
             executor.submit(probe_entry, entry, args.timeout, args.retries): index
             for index, entry in enumerate(entries)
+            if index not in roya_indices
         }
         completed = 0
         for future in as_completed(futures):
@@ -298,6 +301,15 @@ def main():
             completed += 1
             if completed % 25 == 0 or completed == len(entries):
                 print(f"Completed {completed}/{len(entries)}")
+
+    # Roya is resolved and verified last, so a long full scan cannot publish
+    # the signed URL obtained at the start of the scan. Reports match this test.
+    if roya_indices:
+        from roya import verified_roya, print_result
+        roya_result = verified_roya(probe=probe_entry)
+        print_result(roya_result)
+        for index in roya_indices:
+            results[index] = dict(roya_result)
 
     checked_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
     write_csv(args.csv, results, checked_at)
