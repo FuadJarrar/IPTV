@@ -1,6 +1,7 @@
 name: Refresh direct Roya in arab-list
 
 on:
+  workflow_call:
   workflow_dispatch:
   push:
     branches: [main]
@@ -10,8 +11,6 @@ on:
       - test_channels.py
       - tests/**
       - .github/workflows/refresh.yml
-  schedule:
-    - cron: "7,22,37,52 * * * *"
 
 permissions:
   contents: write

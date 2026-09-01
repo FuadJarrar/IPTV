@@ -1,0 +1,15 @@
+name: Roya refresh scheduler C
+
+on:
+  schedule:
+    - cron: "37 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    uses: ./.github/workflows/refresh.yml
+    permissions:
+      contents: write
