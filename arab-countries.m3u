@@ -180,7 +180,7 @@ http://45.63.116.205/hls3/stream1.m3u8
 #EXTINF:-1 tvg-id="RoyaTV.jo" tvg-name="Roya TV" tvg-logo="https://en.roya.tv/images/logo.png" group-title="Jordan" availability="available",Roya TV (Roya Page)
 #EXTVLCOPT:http-referrer=https://roya.tv/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0
-https://live.kwikmotion.com/royatvlive/royatv.smil/playlist.m3u8?hdnts=exp=1788401594~acl=/royatvlive/royatv.smil/*~hmac=b118d9f643fff9031d9eff72d4dbe48ff10246b7f35d09fc754c3bd8d4b73dd0
+https://live.kwikmotion.com/royatvlive/royatv.smil/playlist.m3u8?hdnts=exp=1788402789~acl=/royatvlive/royatv.smil/*~hmac=b996a3cf7808951f04de986bf5d8cebc05b383c43ed9105f261bf810c20ad465
 #EXTINF:-1 tvg-id="KTV1.kw@SD" tvg-logo="https://i.imgur.com/kG0d8Ay.png" group-title="Kuwait" tvg-name="KTV 1" availability="available",KTV 1 (1080p)
 https://kwtktv1ta.cdn.mangomolo.com/ktv1/smil:ktv1.stream.smil/chunklist.m3u8
 #EXTINF:-1 tvg-id="KTV2.kw@SD" tvg-logo="https://i.imgur.com/hB57mNh.png" group-title="Kuwait" tvg-name="KTV 2" availability="available",KTV 2 (1080p)
