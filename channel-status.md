@@ -1,6 +1,6 @@
 # Arab Countries Channel Status
 
-Last automated test: **2026-09-06 07:14:30 UTC**
+Last automated test: **2026-09-07 07:28:05 UTC**
 
 > Tests run from a GitHub-hosted runner. Geo-restricted streams may work in Jordan even when they fail here.
 
@@ -10,8 +10,8 @@ Last automated test: **2026-09-06 07:14:30 UTC**
 | --- | ---: |
 | Total playlist entries | 1087 |
 | Real streams tested | 328 |
-| Working | 261 |
-| Failed or restricted | 67 |
+| Working | 265 |
+| Failed or restricted | 63 |
 | No public stream | 723 |
 | Blocklisted | 36 |
 
@@ -29,14 +29,14 @@ Last automated test: **2026-09-06 07:14:30 UTC**
 | Iraq | 138 | 56 | 51 | 5 | 82 | 0 |
 | Jordan | 62 | 19 | 15 | 4 | 43 | 0 |
 | Kuwait | 26 | 11 | 10 | 1 | 15 | 0 |
-| Lebanon | 48 | 30 | 21 | 9 | 18 | 0 |
+| Lebanon | 48 | 30 | 23 | 7 | 18 | 0 |
 | Libya | 26 | 4 | 4 | 0 | 22 | 0 |
 | Mauritania | 16 | 0 | 0 | 0 | 16 | 0 |
-| Morocco | 30 | 9 | 9 | 0 | 21 | 0 |
+| Morocco | 30 | 9 | 8 | 1 | 21 | 0 |
 | Oman | 6 | 5 | 5 | 0 | 1 | 0 |
-| Palestine | 39 | 19 | 14 | 5 | 20 | 0 |
-| Qatar | 86 | 23 | 13 | 10 | 33 | 30 |
-| Saudi Arabia | 164 | 56 | 43 | 13 | 108 | 0 |
+| Palestine | 39 | 19 | 15 | 4 | 20 | 0 |
+| Qatar | 86 | 23 | 14 | 9 | 33 | 30 |
+| Saudi Arabia | 164 | 56 | 44 | 12 | 108 | 0 |
 | Somalia | 25 | 7 | 0 | 7 | 18 | 0 |
 | Sudan | 31 | 3 | 2 | 1 | 28 | 0 |
 | Syria | 30 | 11 | 10 | 1 | 19 | 0 |
@@ -47,13 +47,13 @@ Last automated test: **2026-09-06 07:14:30 UTC**
 ## Test results
 
 - **Not tested — no public stream:** 723
-- **Working:** 261
+- **Working:** 265
 - **Not tested — blocklisted:** 36
 - **Restricted (403):** 28
-- **Failed:** 19
-- **Not found (404):** 10
+- **Failed:** 17
+- **Not found (404):** 7
 - **Invalid stream:** 6
+- **Timeout:** 2
 - **Roya verification failed:** 1
 - **TLS failure:** 1
-- **Timeout:** 1
 - **Unauthorized (401):** 1
