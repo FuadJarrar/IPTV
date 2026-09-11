@@ -65,8 +65,14 @@ def fresh_roya():
         "Referer": "https://roya.tv/", "User-Agent": "Mozilla/5.0",
         "Accept": "application/json", "Cache-Control": "no-cache",
     })
-    with urllib.request.urlopen(request, timeout=30) as response:
-        payload = response.read(1048577)
+    try:
+        with urllib.request.urlopen(request, timeout=30) as response:
+            payload = response.read(1048577)
+    except (OSError, http.client.HTTPException):
+        # Official public URL returned by ROYA_API on 2026-09-11.
+        # verified_roya still probes and decodes it before publication.
+        return row_for_url(validate_url(
+            "https://live.kwikmotion.com/royatvpublic/royatv.smil/playlist.m3u8"))
     if len(payload) > 1048576:
         raise ValueError("Roya API response too large")
     url = find_secured_url(json.loads(payload))
