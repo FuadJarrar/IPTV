@@ -26,8 +26,12 @@ def validate_url(url, minimum=MIN_VALIDITY):
     parsed = urllib.parse.urlsplit(url)
     if (parsed.scheme != "https" or parsed.hostname != "live.kwikmotion.com"
             or parsed.port not in (None, 443) or parsed.username or parsed.password
-            or not parsed.path.startswith("/royatvlive/royatv.smil/")):
+            or not (parsed.path.startswith("/royatvlive/royatv.smil/")
+                    or parsed.path == "/royatvpublic/royatv.smil/playlist.m3u8")):
         raise ValueError("Unexpected Roya stream address")
+    if (parsed.path == "/royatvpublic/royatv.smil/playlist.m3u8"
+            and not parsed.query and not parsed.fragment):
+        return url
     if expires_at(url) - time.time() < minimum:
         raise ValueError("Roya link has insufficient validity remaining")
     return url
@@ -102,7 +106,8 @@ def verified_roya(probe=None):
         # Recheck AFTER decoding. Never publish a link about to expire.
         validate_url(row["url"])
         result.update(detail=f"audio+video; {frames} frames / {seconds:.2f}s decoded",
-                      expires_utc=datetime.fromtimestamp(expires_at(row["url"]), timezone.utc).isoformat())
+                      expires_utc=(datetime.fromtimestamp(expires_at(row["url"]), timezone.utc).isoformat()
+                                   if expires_at(row["url"]) else "public stream; no token expiry"))
         return result
     except (OSError, ValueError, TypeError, http.client.HTTPException, subprocess.TimeoutExpired) as error:
         row.update(test_status="Roya verification failed", detail=safe_error(error),
