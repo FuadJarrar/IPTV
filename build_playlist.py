@@ -2,6 +2,8 @@
 import argparse
 import csv
 import io
+import html
+import json
 import http.client
 import re
 import urllib.parse
@@ -54,6 +56,45 @@ def fetch_text(url, referer=None):
     req = urllib.request.Request(url, headers=headers)
     with urllib.request.urlopen(req, timeout=60) as response:
         return response.read().decode("utf-8", errors="replace")
+
+
+
+def almamlaka_entry():
+    """Resolve the HLS source used by Al Mamlaka's official live player."""
+    page = fetch_text("https://www.almamlakatv.com/live-video")
+    match = re.search(r'(?:https:)?//players\.brightcove\.net/[^\s"\'<>]+', page)
+    if not match:
+        raise ValueError("Al Mamlaka live player not found")
+    player = urllib.parse.urlsplit(html.unescape(match.group(0)))
+    parts = player.path.strip("/").split("/")
+    if len(parts) != 3 or not parts[0].isdigit():
+        raise ValueError("Unexpected Al Mamlaka player address")
+    account, player_id, _ = parts
+    video = urllib.parse.parse_qs(player.query).get("videoId", [""])[0]
+    if not video.isdigit():
+        raise ValueError("Al Mamlaka live video ID not found")
+    config = json.loads(fetch_text(
+        f"https://players.brightcove.net/{account}/{player_id}/config.json"))
+    request = urllib.request.Request(
+        f"https://edge.api.brightcove.com/playback/v1/accounts/{account}/videos/{video}",
+        headers={"User-Agent": UA,
+                 "Accept": "application/json;pk=" + config["video_cloud"]["policy_key"]})
+    with urllib.request.urlopen(request, timeout=30) as response:
+        data = json.load(response)
+    for source in data.get("sources", []):
+        url = source.get("src", "")
+        parsed = urllib.parse.urlsplit(url)
+        if (source.get("type", "").lower() == "application/x-mpegurl"
+                and parsed.scheme == "https"
+                and (parsed.hostname or "").endswith(".brightcove.com")
+                and not source.get("key_systems")):
+            return [
+                '#EXTINF:-1 tvg-id="AlMamlakaTV.jo" tvg-name="Al Mamlaka" '
+                'tvg-logo="https://www.almamlakatv.com/css/frontcss/images/logo.png" '
+                'group-title="Jordan" availability="available",Al Mamlaka',
+                '#EXTVLCOPT:http-referrer=https://www.almamlakatv.com/',
+                '#EXTVLCOPT:http-user-agent=Mozilla/5.0', url]
+    raise ValueError("Al Mamlaka player returned no public HLS source")
 
 
 def parse_entries(text):
@@ -268,6 +309,19 @@ def main():
     except (OSError, ValueError, TypeError, http.client.HTTPException) as error:
         roya_entry = None
         print("Roya resolution failed; other channels will still be built:", safe_error(error))
+
+    try:
+        mamlaka = almamlaka_entry()
+        entries = [entry for entry in entries if channel_id(entry) != "AlMamlakaTV.jo"]
+        entries.append(mamlaka)
+    except (OSError, ValueError, KeyError, TypeError, http.client.HTTPException) as error:
+        print("Al Mamlaka resolution failed; retaining upstream candidates:", safe_error(error))
+    for entry in entries:
+        if channel_id(entry) == "AlMamlakaTV.jo":
+            entry[0] = set_extinf_attr(entry[0], "tvg-logo",
+                "https://www.almamlakatv.com/css/frontcss/images/logo.png")
+            entry[0] = set_extinf_attr(entry[0], "group-title", "Jordan")
+            entry[0] = set_display_name(entry[0], "Al Mamlaka")
 
     main_entries = entries + ([roya_entry] if roya_entry else [])
     main_entries.sort(key=entry_key)
