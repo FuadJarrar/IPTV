@@ -1,6 +1,6 @@
 # Arab Countries Channel Status
 
-Last automated test: **2026-09-12 05:18:14 UTC**
+Last automated test: **2026-09-12 07:16:46 UTC**
 
 > Tests run from a GitHub-hosted runner. Geo-restricted streams may work in Jordan even when they fail here.
 
@@ -10,8 +10,8 @@ Last automated test: **2026-09-12 05:18:14 UTC**
 | --- | ---: |
 | Total playlist entries | 1087 |
 | Real streams tested | 329 |
-| Working | 270 |
-| Failed or restricted | 59 |
+| Working | 269 |
+| Failed or restricted | 60 |
 | No public stream | 722 |
 | Blocklisted | 36 |
 
@@ -26,7 +26,7 @@ Last automated test: **2026-09-12 05:18:14 UTC**
 | Comoros | 2 | 0 | 0 | 0 | 2 | 0 |
 | Djibouti | 8 | 0 | 0 | 0 | 8 | 0 |
 | Egypt | 116 | 18 | 16 | 2 | 98 | 0 |
-| Iraq | 138 | 56 | 48 | 8 | 82 | 0 |
+| Iraq | 138 | 56 | 47 | 9 | 82 | 0 |
 | Jordan | 62 | 20 | 16 | 4 | 42 | 0 |
 | Kuwait | 26 | 11 | 10 | 1 | 15 | 0 |
 | Lebanon | 48 | 30 | 26 | 4 | 18 | 0 |
@@ -47,10 +47,10 @@ Last automated test: **2026-09-12 05:18:14 UTC**
 ## Test results
 
 - **Not tested — no public stream:** 722
-- **Working:** 270
+- **Working:** 269
 - **Not tested — blocklisted:** 36
 - **Restricted (403):** 25
-- **Failed:** 14
+- **Failed:** 15
 - **Not found (404):** 11
 - **Invalid stream:** 6
 - **TLS failure:** 1
