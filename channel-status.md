@@ -1,6 +1,6 @@
 # Arab Countries Channel Status
 
-Last automated test: **2026-09-12 07:16:46 UTC**
+Last automated test: **2026-09-13 07:34:27 UTC**
 
 > Tests run from a GitHub-hosted runner. Geo-restricted streams may work in Jordan even when they fail here.
 
@@ -10,8 +10,8 @@ Last automated test: **2026-09-12 07:16:46 UTC**
 | --- | ---: |
 | Total playlist entries | 1087 |
 | Real streams tested | 329 |
-| Working | 269 |
-| Failed or restricted | 60 |
+| Working | 267 |
+| Failed or restricted | 62 |
 | No public stream | 722 |
 | Blocklisted | 36 |
 
@@ -21,12 +21,12 @@ Last automated test: **2026-09-12 07:16:46 UTC**
 
 | Country | Total | Tested | Working | Failed | No stream | Blocked |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Algeria | 44 | 6 | 4 | 2 | 38 | 0 |
+| Algeria | 44 | 6 | 5 | 1 | 38 | 0 |
 | Bahrain | 6 | 5 | 5 | 0 | 1 | 0 |
 | Comoros | 2 | 0 | 0 | 0 | 2 | 0 |
 | Djibouti | 8 | 0 | 0 | 0 | 8 | 0 |
-| Egypt | 116 | 18 | 16 | 2 | 98 | 0 |
-| Iraq | 138 | 56 | 47 | 9 | 82 | 0 |
+| Egypt | 116 | 18 | 13 | 5 | 98 | 0 |
+| Iraq | 138 | 56 | 49 | 7 | 82 | 0 |
 | Jordan | 62 | 20 | 16 | 4 | 42 | 0 |
 | Kuwait | 26 | 11 | 10 | 1 | 15 | 0 |
 | Lebanon | 48 | 30 | 26 | 4 | 18 | 0 |
@@ -34,8 +34,8 @@ Last automated test: **2026-09-12 07:16:46 UTC**
 | Mauritania | 16 | 0 | 0 | 0 | 16 | 0 |
 | Morocco | 30 | 9 | 8 | 1 | 21 | 0 |
 | Oman | 6 | 5 | 5 | 0 | 1 | 0 |
-| Palestine | 39 | 19 | 15 | 4 | 20 | 0 |
-| Qatar | 86 | 23 | 15 | 8 | 33 | 30 |
+| Palestine | 39 | 19 | 14 | 5 | 20 | 0 |
+| Qatar | 86 | 23 | 14 | 9 | 33 | 30 |
 | Saudi Arabia | 164 | 56 | 45 | 11 | 108 | 0 |
 | Somalia | 25 | 7 | 0 | 7 | 18 | 0 |
 | Sudan | 31 | 3 | 2 | 1 | 28 | 0 |
@@ -47,11 +47,11 @@ Last automated test: **2026-09-12 07:16:46 UTC**
 ## Test results
 
 - **Not tested — no public stream:** 722
-- **Working:** 269
+- **Working:** 267
 - **Not tested — blocklisted:** 36
 - **Restricted (403):** 25
-- **Failed:** 15
-- **Not found (404):** 11
+- **Failed:** 16
+- **Not found (404):** 12
 - **Invalid stream:** 6
 - **TLS failure:** 1
 - **Timeout:** 1
