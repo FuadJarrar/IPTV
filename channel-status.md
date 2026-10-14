@@ -1,6 +1,6 @@
 # Arab Countries Channel Status
 
-Last automated test: **2026-10-13 09:34:58 UTC**
+Last automated test: **2026-10-14 07:48:42 UTC**
 
 > Tests run from a GitHub-hosted runner. Geo-restricted streams may work in Jordan even when they fail here.
 
@@ -21,7 +21,7 @@ Last automated test: **2026-10-13 09:34:58 UTC**
 
 | Country | Total | Tested | Working | Failed | No stream | Blocked |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Algeria | 44 | 7 | 3 | 4 | 37 | 0 |
+| Algeria | 44 | 7 | 4 | 3 | 37 | 0 |
 | Bahrain | 6 | 5 | 5 | 0 | 1 | 0 |
 | Comoros | 2 | 0 | 0 | 0 | 2 | 0 |
 | Djibouti | 8 | 0 | 0 | 0 | 8 | 0 |
@@ -29,7 +29,7 @@ Last automated test: **2026-10-13 09:34:58 UTC**
 | Iraq | 139 | 57 | 53 | 4 | 82 | 0 |
 | Jordan | 62 | 20 | 18 | 2 | 42 | 0 |
 | Kuwait | 26 | 11 | 10 | 1 | 15 | 0 |
-| Lebanon | 48 | 30 | 25 | 5 | 18 | 0 |
+| Lebanon | 48 | 30 | 24 | 6 | 18 | 0 |
 | Libya | 26 | 4 | 4 | 0 | 22 | 0 |
 | Mauritania | 16 | 1 | 1 | 0 | 15 | 0 |
 | Morocco | 30 | 9 | 9 | 0 | 21 | 0 |
@@ -51,7 +51,7 @@ Last automated test: **2026-10-13 09:34:58 UTC**
 - **Not tested — blocklisted:** 20
 - **Restricted (403):** 18
 - **Failed:** 14
-- **Not found (404):** 6
+- **Not found (404):** 7
 - **Invalid stream:** 5
-- **Unauthorized (401):** 2
 - **Connection refused:** 1
+- **Unauthorized (401):** 1

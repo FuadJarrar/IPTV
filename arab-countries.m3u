@@ -3,6 +3,8 @@
 http://mkstream.servehttp.com:1940/AmouYazid/ay1/playlist.m3u8
 #EXTINF:-1 tvg-id="ElHeddafTV.dz@SD" tvg-logo="https://i.imgur.com/cDkIDIA.png" group-title="Algeria" tvg-name="El-Heddaf TV" availability="available",El-Heddaf TV (1080p)
 https://live.elheddaftv.com:8081/elheddaftv/index.m3u8
+#EXTINF:-1 tvg-id="ElwataniaTV.dz@SD" tvg-logo="https://i.imgur.com/NKR8WFq.png" group-title="Algeria" tvg-name="Elwatania TV" availability="available",Elwatania TV (1080i)
+https://livesstream.work.gd:5443/WebRTCApp/streams/stream.m3u8
 #EXTINF:-1 tvg-id="TV2.dz@SD" tvg-logo="https://i.imgur.com/VEb631f.png" group-title="Algeria" tvg-name="TV2" availability="available",TV2 (Algeria) (1080p)
 http://185.9.2.18/chid_347/index.m3u8
 #EXTINF:-1 tvg-id="BahrainInternational.bh@SD" tvg-logo="https://i.imgur.com/t6Lmntr.png" group-title="Bahrain" tvg-name="Bahrain International" availability="available",Bahrain International (720p) [Not 24/7]
@@ -220,8 +222,6 @@ http://185.105.4.151:8080/_defapp_/ittihad/index.m3u8
 http://185.9.2.18/chid_391/mono.m3u8
 #EXTINF:-1 tvg-id="AlMayadeenTV.lb@SD" tvg-logo="https://i.imgur.com/GtQOKeW.png" group-title="Lebanon" tvg-name="Al Mayadeen TV" availability="available",Al Mayadeen TV (576p)
 https://mdnlv.cdn.octivid.com/almdn/smil:mpegts.stream.smil/playlist.m3u8
-#EXTINF:-1 tvg-id="AlImanTV.lb@SD" tvg-logo="https://i.imgur.com/4WKQppG.png" group-title="Lebanon" tvg-name="Al-Iman TV" availability="available",Al-Iman TV (Lebanon) (240p) [Not 24/7]
-https://svs.itworkscdn.net/alimanlive/imantv.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="AlManar.lb@SD" tvg-logo="https://i.imgur.com/sOQLV7L.png" group-title="Lebanon" tvg-name="Al-Manar" availability="available",Al-Manar (576p) [Not 24/7]
 https://edge.fastpublish.me/live/index.m3u8
 #EXTINF:-1 tvg-id="ALWifakNewsTV.lb@SD" tvg-logo="https://i.imgur.com/1vqhmNz.png" group-title="Lebanon" tvg-name="ALWifak News TV" availability="available",ALWifak News TV (720p)
