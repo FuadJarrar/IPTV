@@ -14513,7 +14513,7 @@ http://45.63.116.205/hls3/stream1.m3u8
 #EXTINF:-1 tvg-id="RoyaTV.jo" tvg-name="Roya TV" tvg-logo="https://en.roya.tv/images/logo.png" group-title="Jordan" availability="available",Roya TV (Roya Page)
 #EXTVLCOPT:http-referrer=https://roya.tv/
 #EXTVLCOPT:http-user-agent=Mozilla/5.0
-https://live.kwikmotion.com/royatvlive/royatv.smil/playlist.m3u8?hdnts=exp=1795826210~acl=/royatvlive/royatv.smil/*~hmac=3536f6bb5643ad9f7138b00ef9a29a2626e198a75cdd5da6943e0b316a40fd53
+https://live.kwikmotion.com/royatvlive/royatv.smil/playlist.m3u8?hdnts=exp=1795826753~acl=/royatvlive/royatv.smil/*~hmac=8765d81840122bca2fdc6ccc89d736a5bb03d9299a22e14e37560f28e34c769f
 #EXTINF:-1 tvg-id="24KZ.kz@SD" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/24KZ_logo.svg/1280px-24KZ_logo.svg.png" group-title="Kazakhstan",24KZ (576p)
 https://fs.uplink.kz/24KZ/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="31Kanal.kz@SD" tvg-logo="https://31.kz/noimage.png" group-title="Kazakhstan",31 Kanal (576p)
